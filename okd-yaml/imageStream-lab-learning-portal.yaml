@@ -1,10 +1,23 @@
 # imageStream-lab-learning-portal.yaml
 ---
-apiVersion: image.openshift.io/v1
+apiVersion: image.openshift.io/v1 
 kind: ImageStream
 metadata:
-  generation: 1
+  generation: 2
   name: lab-learning-portal
+  labels:
+    app: lab-learning-portal
 spec:
   lookupPolicy:
     local: false
+  tags:
+  - annotations: null
+    from:
+      kind: ImageStreamTag
+      name: lab-learning-portal:v0.1
+      namespace: danilo-labs
+    generation: 2
+    importPolicy: {}
+    name: latest
+    referencePolicy:
+      type: Source
