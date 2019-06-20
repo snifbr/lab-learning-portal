@@ -144,6 +144,9 @@ objects:
           ports:
           - containerPort: 10080
             protocol: TCP
+          resources:
+            limits:
+              memory: "${MEMORY_LIMIT}"
           env:
           - name: PROJECT_NAMESPACE
             valueFrom:
@@ -255,7 +258,8 @@ objects:
   apiVersion: v1
   metadata:
     name: secret123
-    creationTimestamp:
+    labels:
+      app: "${APPLICATION_NAME}"
   data:
     WebHookSecretKey: c2VjcmV0MTIzCg==
 - kind: BuildConfig
