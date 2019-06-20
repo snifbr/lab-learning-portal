@@ -17,10 +17,9 @@ oc-3.11.115 new-app \
 
 2. Adiciona integração com git webhook.
 
-??? note "para adicionar trigger"
-    ```
-    oc set triggers bc %project_namespace%-php-teste --from-github
-    ```
+```
+oc set triggers bc %project_namespace%-php-teste --from-github
+```
 
 ````
 oc-3.11.115 get -o yaml bc danilo-labs-php-teste
@@ -35,14 +34,14 @@ triggers:
   type: "GitHub"
   github:
     secretReference:
-      name: "mysecret"
+      name: "secret123"
 ```
 
 ```
 - kind: Secret
   apiVersion: v1
   metadata:
-    name: mysecret
+    name: secret123
     creationTimestamp:
   data:
     WebHookSecretKey: c2VjcmV0MTIzCg==
