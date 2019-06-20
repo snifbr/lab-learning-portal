@@ -259,7 +259,7 @@ objects:
     - annotations: null
       from:
         kind: ImageStreamTag
-        name: "${APPLICATION_NAME}":v0.1
+        name: "${APPLICATION_NAME}:v0.1"
       generation: 2
       importPolicy: {}
       name: latest
@@ -290,7 +290,7 @@ objects:
     output:
       to:
         kind: ImageStreamTag
-        name: "${APPLICATION_NAME}":v0.1
+        name: "${APPLICATION_NAME}:v0.1"
     triggers:
     - type: ConfigChange
     - imageChange:
