@@ -21,5 +21,16 @@ oc new-app https://raw.githubusercontent.com/snifbr/lab-learning-portal/master/t
   --name=lab-learning-portal \
   --param TERMINAL_IMAGE="docker-registry.default.svc:5000/danilo-labs/lab-learning-portal:latest" \
   --param APPLICATION_NAME=lab-learning-portal \
-  --param CONSOLE_VERSION=v3.11
+  --param CONSOLE_VERSION=v3.11 \
+  --param OC_VERSION=3.11 \
+  --param CONSOLE_BRANDING=ocp
 ```
+
+
+oc new-app https://raw.githubusercontent.com/snifbr/lab-learning-portal/master/templates/production.json \
+  --name=lab-learning-portal \
+  --param TERMINAL_IMAGE="docker-registry.default.svc:5000/danilo-labs/lab-learning-portal:latest" \
+  --param APPLICATION_NAME=lab-learning-portal \
+  --param CONSOLE_VERSION=4.1 \
+  --param OC_VERSION=3.11 \
+  --param CONSOLE_BRANDING=okd
