@@ -1,0 +1,25 @@
+# buildConfig-lab-learning-portal.yaml
+---
+apiVersion: build.openshift.io/v1
+kind: BuildConfig
+metadata:
+  labels:
+    build: lab-learning-portal
+  name: lab-learning-portal
+spec:
+  source:
+    type: Git
+    git:
+      ref: master
+      uri: https://github.com/snifbr/lab-learning-portal.git
+  strategy:
+    type: Docker
+    dockerStrategy:
+  output:
+    to:
+      kind: ImageStreamTag
+      name: lab-learning-portal:v0.1
+  triggers:
+  - type: ConfigChange
+  - imageChange:
+      type: ImageChange
