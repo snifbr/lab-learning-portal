@@ -11,7 +11,7 @@ var google_analytics = `
 `;
 
 var config = {
-    site_title: 'Learning Portal',
+    site_title: 'Hands-on Portal',
 
     // analytics: google_analytics,
 
