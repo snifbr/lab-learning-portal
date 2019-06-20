@@ -19,6 +19,12 @@
             "required": true
         },
         {
+            "description": "Maximum amount of memory the container can use.",
+            "displayName": "Memory Limit",
+            "name": "MEMORY_LIMIT",
+            "value": "512Mi"
+        },
+        {
             "name": "AUTH_USERNAME",
             "value": ""
         },
@@ -233,7 +239,12 @@
                                         "name": "shared",
                                         "mountPath": "/var/run/workshop"
                                     }
-                                ]
+                                ],
+                                "resources": {
+                                    "limits": {
+                                        "memory": "${MEMORY_LIMIT}"
+                                  }
+                                }
                             }
                         ],
                         "containers": [
