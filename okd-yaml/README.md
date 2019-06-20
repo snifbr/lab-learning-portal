@@ -17,8 +17,9 @@ oc start-build lab-learning-portal
 ```
 
 ```bash
-oc new-app https://raw.githubusercontent.com/snifbr/lab-learning-portal/master/templates/production.json \
+oc new-app https://raw.githubusercontent.com/snifbr/lab-learning-portal/master/templates/production.yaml \
+  --name=lab-learning-portal \
   --param TERMINAL_IMAGE="docker-registry.default.svc:5000/danilo-labs/lab-learning-portal:latest" \
   --param APPLICATION_NAME=lab-learning-portal \
-  --param CONSOLE_VERSION=4.2.0
+  --param CONSOLE_VERSION=v3.11
 ```
