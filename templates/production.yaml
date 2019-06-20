@@ -74,20 +74,6 @@ objects:
     name: "${APPLICATION_NAME}-user"
   roleRef:
     name: admin
-- kind: ImageStream
-  apiVersion: v1
-  metadata:
-    name: "${APPLICATION_NAME}"
-    labels:
-      app: "${APPLICATION_NAME}"
-  spec:
-    lookupPolicy:
-      local: true
-    tags:
-    - name: latest
-      from:
-        kind: DockerImage
-        name: "${TERMINAL_IMAGE}"
 - kind: ConfigMap
   apiVersion: v1
   metadata:
@@ -254,7 +240,7 @@ objects:
       app: "${APPLICATION_NAME}"
   spec:
     lookupPolicy:
-      local: false
+      local: true
     tags:
     - annotations: null
       from:
