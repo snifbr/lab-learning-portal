@@ -242,6 +242,11 @@
                     "protocol": "TCP"
                   }
                 ],
+                "resources": {
+                  "limits": {
+                    "memory": "${MEMORY_LIMIT}"
+                  }
+                },
                 "env": [
                   {
                     "name": "PROJECT_NAMESPACE",
@@ -443,7 +448,9 @@
       "apiVersion": "v1",
       "metadata": {
         "name": "secret123",
-        "creationTimestamp": null
+        "labels": {
+          "app": "${APPLICATION_NAME}"
+        }
       },
       "data": {
         "WebHookSecretKey": "c2VjcmV0MTIzCg=="
