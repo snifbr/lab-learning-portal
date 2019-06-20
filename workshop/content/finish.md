@@ -1,7 +1,7 @@
 ---
 Sort: 3
 Title: Workshop Summary
-PrevPage: exercises/05-workshop-images
+PrevPage: hands-on/02-handson
 ExitSign: Finish Workshop
 ---
 
