@@ -17,9 +17,14 @@ oc-3.11.115 new-app \
 
 2. Adiciona integração com git webhook.
 
-```
-oc set triggers bc %project_namespace%-php-teste --from-github
-```
+??? note "para adicionar trigger"
+    ```
+    oc set triggers bc %project_namespace%-php-teste --from-github
+    ```
+
+````
+oc-3.11.115 get -o yaml bc danilo-labs-php-teste
+````
 
 ```
 echo 'secret123' | base64
