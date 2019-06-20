@@ -20,7 +20,7 @@
         },
         {
             "description": "Maximum amount of memory the container can use.",
-            "displayName": "Memory Limit",
+            "displayName": "MEMORY_LIMIT",
             "name": "MEMORY_LIMIT",
             "value": "512Mi"
         },
