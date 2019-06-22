@@ -22,7 +22,7 @@
     },
     {
       "name": "TERMINAL_IMAGE",
-      "value": "quay.io/openshiftlabs/workshop-dashboard:2.14.4",
+      "value": "quay.io/openshiftlabs/workshop-dashboard:2.10.6",
       "required": true
     },
     {
@@ -30,27 +30,6 @@
       "displayName": "MEMORY_LIMIT",
       "name": "MEMORY_LIMIT",
       "value": "512Mi"
-    },
-    {
-      "name": "AUTH_USERNAME",
-      "value": ""
-    },
-    {
-      "name": "AUTH_PASSWORD",
-      "generate": "expression",
-      "from": "[a-zA-Z0-9]{16}"
-    },
-    {
-      "name": "OPENSHIFT_USERNAME",
-      "value": ""
-    },
-    {
-      "name": "OPENSHIFT_PASSWORD",
-      "value": ""
-    },
-    {
-      "name": "OPENSHIFT_TOKEN",
-      "value": ""
     },
     {
       "name": "TERMINAL_ENVVARS",
@@ -65,10 +44,6 @@
       "value": ""
     },
     {
-      "name": "WORKSHOPPER_URLS",
-      "value": ""
-    },
-    {
       "name": "OC_VERSION",
       "value": ""
     },
@@ -79,16 +54,6 @@
     {
       "name": "KUBECTL_VERSION",
       "value": ""
-    },
-    {
-      "name": "CONSOLE_VERSION",
-      "value": "v3.11.0",
-      "required": true
-    },
-    {
-      "name": "CONSOLE_BRANDING",
-      "value": "openshift",
-      "required": true
     }
   ],
   "objects": [
@@ -186,52 +151,6 @@
           },
           "spec": {
             "serviceAccountName": "${APPLICATION_NAME}-user",
-            "initContainers": [
-              {
-                "name": "setup-console",
-                "image": "${TERMINAL_IMAGE}",
-                "command": [
-                  "/opt/workshop/bin/setup-console.sh"
-                ],
-                "env": [
-                  {
-                    "name": "OPENSHIFT_USERNAME",
-                    "value": "${OPENSHIFT_USERNAME}"
-                  },
-                  {
-                    "name": "OPENSHIFT_PASSWORD",
-                    "value": "${OPENSHIFT_PASSWORD}"
-                  },
-                  {
-                    "name": "OPENSHIFT_TOKEN",
-                    "value": "${OPENSHIFT_TOKEN}"
-                  },
-                  {
-                    "name": "OC_VERSION",
-                    "value": "${OC_VERSION}"
-                  },
-                  {
-                    "name": "ODO_VERSION",
-                    "value": "${ODO_VERSION}"
-                  },
-                  {
-                    "name": "KUBECTL_VERSION",
-                    "value": "${KUBECTL_VERSION}"
-                  }
-                ],
-                "volumeMounts": [
-                  {
-                    "name": "shared",
-                    "mountPath": "/var/run/workshop"
-                  }
-                ],
-                "resources": {
-                  "limits": {
-                    "memory": "${MEMORY_LIMIT}"
-                  }
-                }
-              }
-            ],
             "containers": [
               {
                 "name": "terminal",
@@ -261,54 +180,26 @@
                     "value": "${APPLICATION_NAME}"
                   },
                   {
-                    "name": "AUTH_USERNAME",
-                    "value": "${AUTH_USERNAME}"
-                  },
-                  {
-                    "name": "AUTH_PASSWORD",
-                    "value": "${AUTH_PASSWORD}"
-                  },
-                  {
                     "name": "OAUTH_SERVICE_ACCOUNT",
                     "value": "${APPLICATION_NAME}-user"
                   },
                   {
-                    "name": "WORKSHOPPER_URLS",
-                    "value": "${WORKSHOPPER_URLS}"
-                  },
-                  {
                     "name": "CONSOLE_URL",
                     "value": "http://0.0.0.0:10083"
-                  },
-                  {
-                    "name": "OC_VERSION",
-                    "value": "${OC_VERSION}"
-                  },
-                  {
-                    "name": "ODO_VERSION",
-                    "value": "${ODO_VERSION}"
-                  },
-                  {
-                    "name": "KUBECTL_VERSION",
-                    "value": "${KUBECTL_VERSION}"
                   }
                 ],
                 "volumeMounts": [
                   {
-                    "name": "envvars",
-                    "mountPath": "/opt/workshop/envvars"
-                  },
-                  {
-                    "name": "shared",
-                    "mountPath": "/var/run/workshop"
+                    "mountPath": "/opt/workshop/envvars",
+                    "name": "envvars"
                   }
                 ]
               },
               {
                 "name": "console",
-                "image": "quay.io/openshift/origin-console:${CONSOLE_VERSION}",
+                "image": "openshift/origin-console:latest",
                 "command": [
-                  "/var/run/workshop/start-console.sh"
+                  "/opt/bridge/bin/bridge"
                 ],
                 "env": [
                   {
@@ -330,16 +221,6 @@
                   {
                     "name": "BRIDGE_USER_AUTH",
                     "value": "disabled"
-                  },
-                  {
-                    "name": "BRIDGE_BRANDING",
-                    "value": "${CONSOLE_BRANDING}"
-                  }
-                ],
-                "volumeMounts": [
-                  {
-                    "name": "shared",
-                    "mountPath": "/var/run/workshop"
                   }
                 ]
               }
@@ -350,11 +231,6 @@
                 "configMap": {
                   "name": "${APPLICATION_NAME}-env",
                   "defaultMode": 420
-                }
-              },
-              {
-                "name": "shared",
-                "emptyDir": {
                 }
               }
             ]
