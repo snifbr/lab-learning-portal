@@ -197,7 +197,7 @@
               },
               {
                 "name": "console",
-                "image": "quay.io/openshift/origin-console:v3.11",
+                "image": "quay.io/openshift/origin-console:latest",
                 "command": [
                   "/opt/bridge/bin/bridge"
                 ],
