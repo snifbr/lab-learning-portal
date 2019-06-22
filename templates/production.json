@@ -16,6 +16,17 @@
       "value": "https://github.com/snifbr/lab-learning-portal.git"
     },
     {
+      "description": "The oauth2 personal token for read de git repo.",
+      "displayName": "GIT_OAUTH2_PERSONAL_TOKEN",
+      "name": "GIT_OAUTH2_PERSONAL_TOKEN"
+    },
+    {
+      "description": "Maximum amount of memory the container can use.",
+      "displayName": "MEMORY_LIMIT",
+      "name": "MEMORY_LIMIT",
+      "value": "512Mi"
+    },
+    {
       "name": "APPLICATION_NAME",
       "value": "dashboard",
       "required": true
@@ -24,12 +35,6 @@
       "name": "TERMINAL_IMAGE",
       "value": "quay.io/openshiftlabs/workshop-dashboard:2.10.6",
       "required": true
-    },
-    {
-      "description": "Maximum amount of memory the container can use.",
-      "displayName": "MEMORY_LIMIT",
-      "name": "MEMORY_LIMIT",
-      "value": "512Mi"
     },
     {
       "name": "TERMINAL_ENVVARS",
