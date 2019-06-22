@@ -1,5 +1,4 @@
-FROM quay.io/openshiftlabs/workshop-dashboard:2.14.4
-
+FROM quay.io/openshiftlabs/workshop-dashboard:2.10.6
 USER root
 
 COPY . /tmp/src
