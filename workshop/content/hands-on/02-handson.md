@@ -9,7 +9,7 @@ NextPage: ../finish
 Dentro do projeto execute um novo app.
 
 ```execute
-oc-3.11.115 new-app \
+oc new-app \
     php:7.1~https://github.com/snifbr/s2i-php-container \
     --context-dir=7.1/test/test-app/ \
     --name=%project_namespace%-php-teste
@@ -22,7 +22,7 @@ oc set triggers bc %project_namespace%-php-teste --from-github
 ```
 
 ````
-oc-3.11.115 get -o yaml bc danilo-labs-php-teste
+oc get -o yaml bc danilo-labs-php-teste
 ````
 
 ```
@@ -52,6 +52,6 @@ triggers:
 4. Mostra deploy.
 
 ```execute
-oc-3.11.115 delete all,serviceaccount,rolebinding,configmap \
+oc delete all,serviceaccount,rolebinding,configmap \
     -l app=%project_namespace%-php-teste
 ```
